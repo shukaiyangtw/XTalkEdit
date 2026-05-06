@@ -1,0 +1,65 @@
+﻿<Page x:Class="XTalkEdit.MainPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:XTalkEdit"
+      xmlns:p="clr-namespace:XTalkEdit.Properties"
+      mc:Ignorable="d" 
+      d:DesignHeight="720" d:DesignWidth="960" Loaded="Page_Loaded">
+
+    <Grid>
+        <Grid.RowDefinitions >
+            <RowDefinition Height="50" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions >
+            <ColumnDefinition Width="250" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource ActionBarPanelStyle}" Orientation="Horizontal">
+            <TextBlock Width="Auto" Text="{x:Static p:Resources.WorkDirectory}" Style="{StaticResource ActionBarTitleStyle}" FontSize="22" />
+            <TextBlock x:Name="WorkDirLabel" Width="Auto" Text="{x:Static p:Resources.SelectDirectory}" Style="{StaticResource ActionBarTitleStyle}" FontSize="16" >
+                <TextBlock.Foreground>
+                    <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.InfoColorKey}}"/>
+                </TextBlock.Foreground>
+            </TextBlock>
+            <Button x:Name="SeletWorkDirButton" Width="32" Height="32" Style="{StaticResource ActionBarButtonStyle}" Click="SeletWorkDirButton_Click">...</Button>
+            <Button x:Name="SelectWorkDirHelp" Style="{StaticResource HelpButtonStyle}" Content="{StaticResource QuestionMarkImage}" Click="SelectWorkDirHelp_Click" />
+        </StackPanel>
+
+        <Grid Grid.Row="1" Grid.Column="0">
+
+            <Grid.RowDefinitions >
+                <RowDefinition Height="32" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="50" />
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions >
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Row="0" Grid.Column="0" Margin="8,0"  VerticalAlignment="Bottom"
+                       Style="{StaticResource HeaderTextStyle}" Text="{x:Static p:Resources.ScriptProject}" />
+
+            <ListBox x:Name="ProjectList" Grid.Row="1" Grid.Column="0" Margin="8,8,8,0" SelectionMode="Single" MouseDoubleClick="ProjectList_MouseDoubleClick">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Name}" FontSize="16" />
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+
+            <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="0">
+                <Button x:Name="NewProjButton" Style="{StaticResource EditButtonStyle}" Content="{x:Static p:Resources.BtnNew}" Click="NewProjButton_Click" IsEnabled="False" />
+                <Button x:Name="EditProjButton" Style="{StaticResource EditButtonStyle}" Content="{x:Static p:Resources.BtnEdit}" Click="EditProjButton_Click" IsEnabled="False" />
+                <Button x:Name="DelProjButton" Style="{StaticResource EditButtonStyle}" Content="{x:Static p:Resources.BtnDelete}" Click="DelProjButton_Click" IsEnabled="False" />
+            </StackPanel>
+        </Grid>
+
+        <FlowDocumentReader x:Name="IntroDocViewer" Grid.Row="1" Grid.Column="1" ViewingMode="TwoPage" />
+    </Grid>
+</Page>

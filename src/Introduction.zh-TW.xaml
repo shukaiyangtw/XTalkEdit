@@ -1,0 +1,179 @@
+﻿<FlowDocument xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+              xmlns:local="clr-namespace:XTalkEdit"
+              ColumnWidth="400" FontSize="16" FontFamily="微軟正黑體"
+              Background="White">
+
+    <Paragraph FontSize="22" FontWeight="Bold">
+        XTalk 腳本專案編輯器
+    </Paragraph>
+
+    <Paragraph FontSize="20" FontWeight="Bold" Foreground="SaddleBrown" Background="AliceBlue">
+        了解 XTalk 的原理
+    </Paragraph>
+
+    <Paragraph>
+        在開始製作 .xtalk 腳本檔案之前，請先了解播放它的原理。
+        最終在畫面上顯示的一個可互動的畫面(frame)，其由後到前大約由三層(layer)網頁元素所構成，最底層是以 &lt;img&gt; 所構成，填滿整個畫面區域的背景、顯示這一幕的場景圖片。
+        中間層是 &lt;canvas&gt;，依腳本在指定在左右中間位置繪製出去背的角色(character)動作圖片，這些圖片也被稱為畫片(sprite)。
+        最上層則是 &lt;div&gt;，顯示目前劇情或是角色對話的文字內容(text)，如果有一些路徑選擇選項的超連結(hyperlink)也可以呈現在這裡。
+        由於以上構成畫面的都是 HTML5 標準的網頁元素，因此也可以支援適應性的網頁設計(responsive web design)功能，意即不需要任何的外掛程式，就可以在各種不同解析度的網頁瀏覽器上呈現。
+    </Paragraph>
+
+    <Paragraph>
+        然而，並不是直接在網頁上直接播放 .xtalk 檔案，因為它並不是標準的 HTML 檔案，這個軟體除了讓您編寫 .xtalk 腳本以外，在<Bold>輸出檔案</Bold>功能的部分，會產生同名的 .js 與 .html 檔案。
+        其中 .js 檔案內以 JavaScript JSON 陣列的形式，將腳本內每個畫面要呈現的內容都描述出來了，而 .html 檔案內則是如上述的背景圖 &lt;img&gt; - 繪製角色 &lt;canvas&gt; - 文字 &lt;div&gt;網頁架構，這些檔案都是 UTF-8 編碼的文字檔案，您可以任何文字編輯軟體去檢視它們。
+        在 .html 中會嵌入這個 JSON 陣列的 .js 檔案，同時也嵌入 xtalkshow-1.0-min.js 與 xtalkshow.css 檔案。
+        其中 xtalkshow-1.0-min.js 包含了解讀並繪製 JSON 陣列內容的必須程式碼，xtalkshow.css 則是控制前述三層式網頁元素的位置與尺寸的樣式表。
+    </Paragraph>
+
+    <Paragraph>
+        產生 .js 與 .html 檔案以後，您不需要將 .xtalk 原始檔案以及 xtalk.proj 專案檔案發佈到網站上，甚至只要把 .html 檔案的內容複製到您的網頁裡就可以了。
+    </Paragraph>
+
+    <Paragraph FontSize="20" FontWeight="Bold" Foreground="SaddleBrown" Background="AliceBlue">
+        本軟體的相關用語
+    </Paragraph>
+
+    <Paragraph>
+        既然 .xtalk 腳本的播放與網頁原理息息相關，本軟體對於播放內容檔案的管理也分為三個層次：工作目錄、專案、幕(或稱為場景，此名詞容易跟背景混淆)。
+        試想一齣網路劇專案的演出由相同的一組角色圖片、一組背景圖片、一系列的段落腳本所構成，因此本軟體管理多齣網路劇的方式是、
+        使用同一組 xtalkshow-1.0-min.js 與 xtalkshow.css 的網路劇放在同一個磁碟目錄下，然後每一齣網路專案(project)自成一個子目錄、該劇所有的圖片、音效、以及產製的檔案都放在裡面，
+        然後同一齣劇不同幕(scene)的腳本則是不同檔名的 .xtalk 檔案，以下介紹相關的用語：
+    </Paragraph>    
+    
+    <List>
+        <ListItem>
+            <Paragraph>
+                <Bold>工作目錄(working directory)</Bold>: 基本上就是要放在同一個網站上的多齣網路劇專案都會放在同一個目錄下、稱之為工作目錄，本軟體會自動建立必須的 Images 與 Scripts 子目錄、
+                當中包含通用於該網站的對話框背景圖檔、xtalkshow.css 樣式表、以及 xtalkshow-1.0-min.js 播放引擎，所以同一個工作目錄下的所有專案、所有腳本，其畫面都是相同的尺寸。
+                本軟體可以切換不同的工作目錄，以編輯擬用於不同網站的網路劇專案，
+                <LineBreak />
+            </Paragraph>
+        </ListItem>
+
+        <ListItem>
+            <Paragraph>
+                <Bold>網路劇專案(xtalk project)</Bold> : 每一個專案都是工作目錄下的一個子目錄，當中包含了一個 xtalk.proj 專案檔(由本軟體產生)，以及背景圖片(建議尺寸 1512x850)、
+                角色圖片(通常是去背的 PNG 檔案)、要在某畫面出現時播放的音效檔案(通常是 .mp3 或 .ogg 檔案)。透過本軟體的介面，在 xtalk.proj 中管理了這些圖片與音效檔案以及它們在網頁上的 ID。
+                同一個專案中可以建立多個腳本共用這些圖片與音效，就像一齣網路劇可以分為許多集。
+                <LineBreak />
+            </Paragraph>
+        </ListItem>
+
+        <ListItem>
+            <Paragraph>
+                <Bold>幕/場景腳本(scene script)</Bold>: 網路劇的一個段落稱為一幕(scene，也翻譯為一個場景)，一份腳本單純地由多個畫面(frame)所構成，同一幕/場景的畫面並不硬性規定必須使用相同的背景圖片。
+                在本軟體當中，畫面(frame)的排列是線性的、而且可以設定標籤(label)，之後在設定其他畫面的路徑選項，就可以指定前往這些標籤所在的畫面位置、或者是前往其他的網頁(其他腳本產生的 .html 檔案)。
+            </Paragraph>
+        </ListItem>
+    </List>
+
+    <Paragraph FontSize="20" FontWeight="Bold" Foreground="SaddleBrown" Background="AliceBlue">
+        如何製作腳本
+    </Paragraph>
+
+    <Paragraph>
+        <Bold>1. 指定工作目錄</Bold>:
+        在製作任何腳本之前、首先要指定工作目錄，您不必對工作目錄做任何的準備，當您在本軟體指定一個目錄以後，本軟體會自動地在當中建立 Images 與 Scripts 子目錄，並且把
+        xtalkshow.css、xtalkshow-1.0-min.js、以及文字對話框的背景圖片複製到裡面，這些檔案是本軟體的內建範本，您也可以手動地修改它們、或是依您的網站需要替換成偏好的檔案。
+    </Paragraph>
+
+    <Paragraph>
+        <Bold>2. 建立新專案</Bold>:
+        建立腳本之前、首先要建立專案(project)、並且建立資產檔案(asset files)。每一個專案都是工作目錄下的一個子目錄，將來也會是網站下的一個子目錄，
+        正因為如此、專案名稱的用字也只能使用檔案系統或網址路徑的合法字元，建議僅使用英數字元與底線字元，括弧、句點、破折線是可接受的，請不要使用空白或中文字。
+        以本軟體建立新專案以後，本軟體會建立子目錄、並且加入一個空白的 xtalk.proj 檔案。
+    </Paragraph>
+
+    <Paragraph>
+        <Bold>3. 加入資產檔案</Bold>:
+        每一個專案目錄裡的圖片和音效檔案都稱為該專案的檔案資產(asset files)，意即這個專案中的所有腳本都共用這些圖片與音效、也只能使用這些圖片與音效。
+        在本軟體的管理介面之下，選擇外部的圖片與音效檔案，本軟體就會將檔案複製到專案目錄裡，並且取一個網頁上 id 名稱，
+        將來要在腳本中使用這些圖片與音效、或者是要把這些檔案嵌入到 .html 網頁中，就是依據這些 id，所以其名稱也只能使用網頁 id 的合法字元，同樣建議僅使用英數字元與底線字元。
+        <LineBreak /><LineBreak />
+        除了加入背景圖片以外，在本軟體中還必須指定原始畫面的尺寸，通常就等於背景圖片的尺寸，如果您沒有指定、本軟體會自動帶入第一張背景圖片的尺寸。
+        因為將來在網頁上繪製的時候，網頁上的畫面尺寸可能與原始畫面不同，因此必須先告知原始畫面的尺寸，xtalkshow-1.0-min.js 才能夠推算角色在網頁畫面上出現的位置尺寸。
+    </Paragraph>
+
+    <Paragraph>
+        <Bold>3.1 如何準備資產檔案？</Bold>:
+        本軟體並不會縮放您所加入的圖片檔案，因此關於調整解析度或壓縮最佳化的動作，請在將它們加入專案成為資產檔案之前完成。
+        建議您在繪製這些背景與角色圖片的時候，先在繪圖軟體裡面以正確的長寬比例繪製、疊合成您想要的樣子，然後在存檔的時候將圖層分離地儲存為背景的 .jpg 檔案以及前景角色的 .png 檔案。
+        在本軟體當中也不能讓您自由地安排角色出現的位置與尺寸，而是固定地將畫面依寬度分為五等份，分別是左一、左二、中央、右二、右一角色的出現位置。
+        當您在準備圖片資產檔案的時候，也請依此要領繪製。       
+    </Paragraph>
+
+    <Paragraph>
+        <Bold>4. 建立新腳本</Bold>:
+        在專案裡建立的新腳本(scene script)都是一個 .xtalk 檔案，當您以本軟體建立新腳本的時候就會為您產生這個檔案。
+        由於新建立的腳本名稱<Italic>scene_name</Italic>將來會被用來產生<Italic>scene_name</Italic>.xtalk、<Italic>scene_name</Italic>.js、以及<Italic>scene_name</Italic>.html 檔案，
+        所以腳本名稱的用字也只能使用檔案系統或網址路徑的合法字元，建議僅使用英數字元與底線字元，句點、破折線是可接受的，請不要使用空白或中文字。腳本的內容單純地只是各個畫面的設定內容、包括使用什麼背景、出現什麼角色、說了什麼文字內容、提供那些路徑選項而已。
+    </Paragraph>
+
+    <Paragraph>
+        <Bold>5. 在腳本裡新增畫面</Bold>:
+        在本軟體的腳本編輯介面之下，按下新增功能就可以增加一個空白畫面(但是背景圖片延續上一畫面)，或是使用複製畫面的功能直接產生一個完全相同的畫面再進行修改。
+        每一個畫面都可以指定唯一的標籤(label)，以作為其他畫面的路徑選項，意即在其他畫面可以提供選項、將播放位置移動到這裡。如果這個畫面自己就要提供路徑選項，這個標籤就作為儲存路徑紀錄時的分辨代號。
+        不作為跳躍點也不提供路徑選項的畫面、就可以不指定標籤。此外，每個畫面也可以指定音效、當播放到這裡的時候就會播放之。(注意，每個腳本的第一個畫面音效通常無法播放、這是 Chrome 瀏覽器自訂的限制)。
+        畫面可以分成三種類型，可以修改的項目也不一樣：
+    </Paragraph>
+
+    <List>
+        <ListItem>
+            <Paragraph>
+                <Bold>封面扉頁(Cover Page)</Bold>: 這種畫面就只有一張大大的背景圖片，此外什麼都沒有，
+                網站使用者點擊了圖片就前往「下一步」按鈕所指定的位置(雖然在這個畫面裡並不會出現下一步按鈕)，所以也不能設定其他文字內容或路徑選項。<LineBreak />
+            </Paragraph>
+        </ListItem>
+
+        <ListItem>
+            <Paragraph>
+                <Bold>角色對話(Dialog of Characters)</Bold>: 這種畫面是最常見也最複雜的，除了指定背景圖片以外，還可以分別指定畫面的左一、左二、中央、右二、右一位置要出現什麼角色。
+                畫面下半部是一個文字框，可以用來顯示一段文字敘述，也可以呈現角色所說的話、另外有說話者文字框可以描述現在是誰在說話。
+                <LineBreak /><LineBreak />
+                至於這個畫面的下一步，可以指定顯示單一的「下一步」按鈕，或是出現最多四個以文字呈現的路徑選項。當您指定使用文字選項的時候、下一步按鈕就不會出現。
+                下一步和每一個文字選項又可以指定是要前往下一個畫面(預設)、某個標籤所在的畫面、或者是前往其他的網頁，例如下一個單元的腳本所產生的 .html 檔案名稱。<LineBreak />
+            </Paragraph>
+        </ListItem>
+
+        <ListItem>
+            <Paragraph>
+                <Bold>全畫面文字框(Full-Screen Text)</Bold>: 當您要呈現大量文字的時候，使用這個類型、文字框就會占滿整個畫面，這種類型的畫面當然就不會指定要出現的角色，但是仍然可以指定文字選項。
+            </Paragraph>
+        </ListItem>
+    </List>
+
+    <Paragraph>
+        <Bold>6. 拷貝、貼上、刪除畫面</Bold>:
+        除了逐個指定畫面內容以外，您可以在左邊的畫面列表中選擇一些畫面，並且進行拷貝(copy)與貼上(paste)、或是刪除這些畫面。
+        拷貝與貼上是可以跨越同一個專案下的不同腳本的，意即在編輯這個腳本的時候拷貝畫面，然後當編輯其他腳本的時候進行貼上的動作。
+    </Paragraph>    
+    
+    <Paragraph>
+        <Bold>7. 試播腳本</Bold>:
+        當您修改一個畫面的設定以後，可以立即按下「測試畫面」預覽這個畫面的呈現效果。當您完成一段畫面的腳本以後，按下「存檔並播放」按鈕，
+        本軟體立刻產製此腳本的 .js 與 .html 檔案、以 Internet Explorer 開啟、並且從目前選擇的位置開始播放，
+        利用這個功能，您可以隨時測試腳本任何部位的播放效果，而不必每次都從頭開始。
+    </Paragraph>
+
+    <Paragraph>
+        <Bold>8. 產製 .js 與 .html 檔案</Bold>:
+        編輯腳本之後、返回專案管理介面，按下「輸出到檔案」按鈕，就會產生所有腳本的 .js 與 .html 檔案，然後以外部的瀏覽器開啟之。
+        產生了這些腳本的 .js 與 .html 檔案以後，您不需要將 .xtalk 原始檔案以及 xtalk.proj 專案檔案發佈到網站上。
+        如果您的網站有其他的樣式或版型規劃，您也不必採用本軟體所產生的網頁檔案，只要把 .html 檔案的內容複製到您的網頁裡就可以了。
+    </Paragraph>    
+    
+    <Paragraph FontSize="20" FontWeight="Bold" Foreground="SaddleBrown" Background="AliceBlue">
+        後記與軟體需求
+    </Paragraph>
+
+    <Paragraph>
+        以本軟體所製作的互動 .js 與 .html 內容、不需要任何的外掛程式，就可以在各種裝置的網頁瀏覽器上播放，
+        由於腳本畫面的「下一步」與路徑選項可以夾帶著路徑選擇的結果前往任意的網址，因此搭配其他的前後端網頁技術的話，可以實現各種帶有互動與紀錄效果的線上教材或交談式遊戲功能。
+    </Paragraph>
+
+    <Paragraph>
+        本軟體需要安裝 .NET Framework 4 軟體元件以及 IE9 以上的版本，因為 IE9 以上才支援 HTML5 標準。而這些元件在 Windows 7 或 Windows 10 通常都是已內建的，如果不能執行本軟體、或者是在製作腳本過程、預覽畫面時出現缺漏的時候，請更新這兩項軟體元件。
+    </Paragraph>
+    
+</FlowDocument>

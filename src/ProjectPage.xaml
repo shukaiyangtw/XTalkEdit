@@ -1,0 +1,160 @@
+﻿<Page x:Class="XTalkEdit.ProjectPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:p="clr-namespace:XTalkEdit.Properties"
+      xmlns:local="clr-namespace:XTalkEdit"
+      mc:Ignorable="d" 
+      d:DesignHeight="720" d:DesignWidth="960" Loaded="Page_Loaded">
+
+    <Grid>
+        <Grid.RowDefinitions >
+            <RowDefinition Height="50" />
+            <RowDefinition Height="32" />
+            <RowDefinition Height="2*" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="32" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="50" />
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions >
+            <ColumnDefinition Width="*" MinWidth="320" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Grid.Row="0" Grid.Column="0" Style="{StaticResource ActionBarPanelStyle}" Orientation="Horizontal">
+
+            <Button x:Name="BackButton" Width="Auto" Height="Auto" Margin="8 2" Style="{StaticResource ActionBarButtonStyle}" Click="BackButton_Click">
+                <StackPanel Orientation="Horizontal">
+                    <Image Width="32" Height="32" Source="{StaticResource BackImage}" />
+                    <TextBlock Text="{x:Static p:Resources.BtnBack}" Style="{StaticResource ActionBarTitleStyle}" />
+                </StackPanel>
+            </Button>
+
+        </StackPanel>
+
+        <StackPanel Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource ActionBarPanelStyle}" Orientation="Horizontal">
+            <TextBlock Width="Auto" Text="{x:Static p:Resources.AssetFiles}" Style="{StaticResource ActionBarTitleStyle}" FontSize="22" />
+            <Button x:Name="AssetFileHelp" Style="{StaticResource HelpButtonStyle}" Content="{StaticResource QuestionMarkImage}" Click="AssetFileHelp_Click" />
+        </StackPanel>
+
+        <TextBlock Grid.Row="1" Grid.Column="0" Margin="8,0"  VerticalAlignment="Bottom"
+                       Style="{StaticResource HeaderTextStyle}" Text="{x:Static p:Resources.SceneScript}" />
+
+        <ListBox x:Name="SceneList" Grid.Row="2" Grid.Column="0" Margin="8,8,8,0" SelectionMode="Single" MouseDoubleClick="SceneList_MouseDoubleClick">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Name}" FontSize="16" />
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="0">
+            <Button x:Name="NewSceneButton" Style="{StaticResource EditButtonStyle}" Content="{x:Static p:Resources.BtnNew}" Click="NewSceneButton_Click" />
+            <Button x:Name="EditSceneButton" Style="{StaticResource EditButtonStyle}" Content="{x:Static p:Resources.BtnEdit}" Click="EditSceneButton_Click" />
+            <Button x:Name="RenameSceneButton" Style="{StaticResource EditButtonStyle}" Content="{x:Static p:Resources.BtnRename}" Click="RenameSceneButton_Click" />
+            <Button x:Name="DelSceneButton" Style="{StaticResource EditButtonStyle}" Content="{x:Static p:Resources.BtnDelete}" Click="DelSceneButton_Click" />
+        </StackPanel>
+
+        <TextBlock Grid.Row="4" Grid.Column="0" Margin="8,0"  VerticalAlignment="Bottom"
+                       Style="{StaticResource HeaderTextStyle}" Text="{x:Static p:Resources.OrigFrameSize}" />
+
+        <StackPanel Grid.Row="5" Grid.Column="0" Grid.RowSpan="2" Orientation="Vertical">
+            <StackPanel Orientation="Horizontal" Margin="8">
+                <TextBlock Width="60" Style="{StaticResource HeaderTextStyle}" Text="{x:Static p:Resources.Width}" TextAlignment="Right" />
+                <TextBox x:Name="WidthTextBox" FontSize="16" Width="80" Text="0" Margin="8,0, 0, 0" TextChanged="Width_TextChanged" />
+
+                <TextBlock Width="60" Style="{StaticResource HeaderTextStyle}" Text="{x:Static p:Resources.Height}" TextAlignment="Right" />
+                <TextBox x:Name="HeightTextBox" FontSize="16" Width="80" Text="0" Margin="8,0, 0, 0" TextChanged="Height_TextChanged" />
+            </StackPanel>
+
+            <TextBlock Margin="8,16,0,0"  VerticalAlignment="Bottom" Style="{StaticResource HeaderTextStyle}" Text="{x:Static p:Resources.OutputJsHtml}" />
+
+            <StackPanel Orientation="Horizontal" Margin="24,8,0,0">
+                <Button x:Name="OutputButton" Height="52" Style="{StaticResource EditButtonStyle}" Click="OutputButton_Click">
+                    <StackPanel Orientation="Horizontal" Margin="8">
+                        <Image Width="36" Height="36" Source="{StaticResource SaveImage}" />
+                        <TextBlock Text="{x:Static p:Resources.BtnOutputToFile}" Margin="8"
+                                   Style="{StaticResource HeaderTextStyle}" VerticalAlignment="Center" />
+                    </StackPanel>
+                </Button>
+            </StackPanel>
+
+        </StackPanel>
+
+        <TextBlock Grid.Row="1" Grid.Column="1" Margin="8,0"  VerticalAlignment="Bottom"
+                       Style="{StaticResource HeaderTextStyle}" Text="{x:Static p:Resources.BackgroundImgs}" />
+
+        <ListBox x:Name="BackgroundList" Grid.Row="2" Grid.Column="1" Margin="8,8,8,0" SelectionMode="Single" SelectionChanged="BackgroundList_SelectionChanged">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding}" FontSize="14" />
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="1">
+            <Button x:Name="NewBgButton" Style="{StaticResource EditButtonStyle}" Content="{x:Static p:Resources.BtnNew}" Click="NewBgButton_Click" />
+            <Button x:Name="RenameBgButton" Style="{StaticResource EditButtonStyle}" Content="{x:Static p:Resources.BtnRename}" Click="RenameBgButton_Click" />
+            <Button x:Name="DelBgButton" Style="{StaticResource EditButtonStyle}" Content="{x:Static p:Resources.BtnDelete}" Click="DelBgButton_Click" />
+        </StackPanel>        
+        
+        <TextBlock Grid.Row="4" Grid.Column="1" Margin="8,0"  VerticalAlignment="Bottom"
+                       Style="{StaticResource HeaderTextStyle}" Text="{x:Static p:Resources.FrameSounds}" />
+
+        <ListBox x:Name="SoundList" Grid.Row="5" Grid.Column="1" Margin="8,8,8,0" SelectionMode="Single" SelectionChanged="SoundList_SelectionChanged">
+            <ListBox.ItemContainerStyle>
+                <Style TargetType="ListBoxItem">
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch"></Setter>
+                </Style>
+            </ListBox.ItemContainerStyle>
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <UniformGrid Columns="2">
+                        <TextBlock Text="{Binding ID}" FontSize="14" Foreground="SteelBlue" />
+                        <TextBlock Text="{Binding FileName}" FontSize="14" />
+                    </UniformGrid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="6" Grid.Column="1">
+            <Button x:Name="NewSoundButton" Style="{StaticResource EditButtonStyle}" Content="{x:Static p:Resources.BtnNew}" Click="NewSoundButton_Click" />
+            <Button x:Name="RenameSoundButton" Style="{StaticResource EditButtonStyle}" Content="{x:Static p:Resources.BtnRename}" Click="RenameSoundButton_Click" />
+            <Button x:Name="DelSoundButton" Style="{StaticResource EditButtonStyle}" Content="{x:Static p:Resources.BtnDelete}" Click="DelSoundButton_Click" />
+        </StackPanel>
+
+        <TextBlock Grid.Row="1" Grid.Column="2" Margin="8,0"  VerticalAlignment="Bottom"
+                       Style="{StaticResource HeaderTextStyle}" Text="{x:Static p:Resources.SpriteImgs}" />
+
+        <ListBox x:Name="SpriteList" Grid.Row="2" Grid.Column="2" Margin="8,8,8,0" SelectionMode="Single" SelectionChanged="SpriteList_SelectionChanged">
+            <ListBox.ItemContainerStyle>
+                <Style TargetType="ListBoxItem">
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch"></Setter>
+                </Style>
+            </ListBox.ItemContainerStyle>
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <UniformGrid Columns="2">
+                        <TextBlock Text="{Binding ID}" FontSize="14" Foreground="SteelBlue" />
+                        <TextBlock Text="{Binding FileName}" FontSize="14" />
+                    </UniformGrid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="2">
+            <Button x:Name="NewSpriteButton" Style="{StaticResource EditButtonStyle}" Content="{x:Static p:Resources.BtnNew}" Click="NewSpriteButton_Click" />
+            <Button x:Name="RenameSpriteButton" Style="{StaticResource EditButtonStyle}" Content="{x:Static p:Resources.BtnRename}" Click="RenameSpriteButton_Click" />
+            <Button x:Name="DelSpriteButton" Style="{StaticResource EditButtonStyle}" Content="{x:Static p:Resources.BtnDelete}" Click="DelSpriteButton_Click" />
+        </StackPanel>        
+        
+        <TextBlock Grid.Row="4" Grid.Column="2" Margin="8,0" VerticalAlignment="Bottom"
+                       Style="{StaticResource HeaderTextStyle}" Text="{x:Static p:Resources.PreviewImg}" />
+
+        <Image x:Name="PreviewImage" Grid.Row="5" Grid.Column="2" Grid.RowSpan="2" Margin="8" Stretch="Uniform" />
+    </Grid>
+</Page>

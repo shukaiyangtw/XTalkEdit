@@ -1,0 +1,47 @@
+﻿<Window x:Class="XTalkEdit.SpriteDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:p="clr-namespace:XTalkEdit.Properties"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:XTalkEdit"
+        mc:Ignorable="d" Height="450" Width="600"
+        Title="{x:Static p:Resources.SpriteImgs}" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen">
+
+    <Grid>
+        <Grid.RowDefinitions >
+            <RowDefinition Height="*" />
+            <RowDefinition Height="50" />
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions >
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <ListBox x:Name="SpriteList" Grid.Row="0" Grid.Column="0" Margin="8" SelectionMode="Single" SelectionChanged="OnSelectionChanged">
+            <ListBox.ItemContainerStyle>
+                <Style TargetType="ListBoxItem">
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch"></Setter>
+                </Style>
+            </ListBox.ItemContainerStyle>
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <UniformGrid Columns="2">
+                        <TextBlock Text="{Binding ID}" FontSize="14" Foreground="SteelBlue" />
+                        <TextBlock Text="{Binding FileName}" FontSize="14" />
+                    </UniformGrid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+        <Image x:Name="PreviewImage" Grid.Row="0" Grid.Column="1" Margin="8"  Stretch="Uniform" />
+
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
+            <Button x:Name="OkButton" Style="{StaticResource EditButtonStyle}" Content="{x:Static p:Resources.BtnOK}" Click="OkButton_Click" />
+            <Button x:Name="RemoveButton" Style="{StaticResource EditButtonStyle}" Content="{x:Static p:Resources.BtnRemove}" Click="RemoveButton_Click" />
+            <Button x:Name="CancelButton" Style="{StaticResource EditButtonStyle}" Content="{x:Static p:Resources.BtnCancel}" Click="CancelButton_Click" />
+            <Button x:Name="ImportButton" Style="{StaticResource EditButtonStyle}" Content="{x:Static p:Resources.BtnImport}" Click="ImportButton_Click" />
+        </StackPanel>
+    </Grid>
+</Window>

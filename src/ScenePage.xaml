@@ -1,0 +1,334 @@
+﻿<Page x:Class="XTalkEdit.ScenePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:p="clr-namespace:XTalkEdit.Properties"
+      xmlns:local="clr-namespace:XTalkEdit"
+      mc:Ignorable="d" 
+      d:DesignHeight="720" d:DesignWidth="1024" Loaded="Page_Loaded" KeyDown="Page_KeyDown">
+
+    <Grid>
+        <Grid.RowDefinitions >
+            <RowDefinition Height="50" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions >
+            <ColumnDefinition Width="*" MinWidth="150" />
+            <ColumnDefinition Width="2*" MinWidth="320" />
+            <ColumnDefinition Width="4*" />
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Grid.Row="0" Grid.Column="0" Style="{StaticResource ActionBarPanelStyle}" Orientation="Horizontal">
+
+            <Button x:Name="BackButton" Width="Auto" Height="Auto" Margin="8 2" Style="{StaticResource ActionBarButtonStyle}" Click="BackButton_Click">
+                <StackPanel Orientation="Horizontal">
+                    <Image Width="32" Height="32" Source="{StaticResource BackImage}" />
+                    <TextBlock Text="{x:Static p:Resources.BtnBack}" Style="{StaticResource ActionBarTitleStyle}" />
+                </StackPanel>
+            </Button>
+
+        </StackPanel>
+
+        <StackPanel Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource ActionBarPanelStyle}" Orientation="Horizontal">
+            <Button x:Name="PrevFrameButton" Style="{StaticResource HelpButtonStyle}" Content="{StaticResource PrevImage}" Click="PrevNextButton_Click" />
+
+            <Button x:Name="AddFrameButton" Width="Auto" Height="Auto" Margin="8 2" Style="{StaticResource ActionBarButtonStyle}" Click="AddFrameButton_Click">
+                <StackPanel Orientation="Horizontal">
+                    <Image Width="32" Height="32" Source="Assets/add.png" />
+                    <TextBlock Text="{x:Static p:Resources.BtnNew}" Style="{StaticResource ActionBarTitleStyle}" />
+                </StackPanel>
+            </Button>
+
+            <Button x:Name="DuplicateButton" Width="Auto" Height="Auto" Margin="8 2" Style="{StaticResource ActionBarButtonStyle}" Click="DuplicateButton_Click">
+                <StackPanel Orientation="Horizontal">
+                    <Image Width="32" Height="32" Source="Assets/duplicate.png" />
+                    <TextBlock Text="{x:Static p:Resources.BtnDuplicate}" Style="{StaticResource ActionBarTitleStyle}" />
+                </StackPanel>
+            </Button>
+
+            <Button x:Name="CopyFrameButton" Width="Auto" Height="Auto" Margin="8 2" Style="{StaticResource ActionBarButtonStyle}" Click="CopyFrameButton_Click">
+                <StackPanel Orientation="Horizontal">
+                    <Image Width="32" Height="32" Source="Assets/copy.png" />
+                    <TextBlock Text="{x:Static p:Resources.BtnCopy}" Style="{StaticResource ActionBarTitleStyle}" />
+                </StackPanel>
+            </Button>
+
+            <Button x:Name="PasteFrameButton" Width="Auto" Height="Auto" Margin="8 2" Style="{StaticResource ActionBarButtonStyle}" Click="PasteFrameButton_Click">
+                <StackPanel Orientation="Horizontal">
+                    <Image Width="32" Height="32" Source="Assets/paste.png" />
+                    <TextBlock Text="{x:Static p:Resources.BtnPaste}" Style="{StaticResource ActionBarTitleStyle}" />
+                </StackPanel>
+            </Button>
+
+            <Button x:Name="DeleteFrameButton" Width="Auto" Height="Auto" Margin="8 2" Style="{StaticResource ActionBarButtonStyle}" Click="DeleteFrameButton_Click">
+                <StackPanel Orientation="Horizontal">
+                    <Image Width="32" Height="32" Source="Assets/delete.png" />
+                    <TextBlock Text="{x:Static p:Resources.BtnDelete}" Style="{StaticResource ActionBarTitleStyle}" />
+                </StackPanel>
+            </Button>
+
+            <Button x:Name="SearchFrameButton" Width="Auto" Height="Auto" Margin="8 2"  Style="{StaticResource ActionBarButtonStyle}" Click="SearchFrameButton_Click">
+                <StackPanel Orientation="Horizontal">
+                    <Image Width="32" Height="32" Source="{StaticResource SearchImage}" />
+                    <TextBlock Text="{x:Static p:Resources.BtnSearch}" Style="{StaticResource ActionBarTitleStyle}" />
+                </StackPanel>
+            </Button>
+
+            <Button x:Name="PlayButton" Width="Auto" Height="Auto" Margin="8 2" Style="{StaticResource ActionBarButtonStyle}" Click="PlayButton_Click">
+                <StackPanel Orientation="Horizontal">
+                    <Image Width="32" Height="32" Source="{StaticResource SaveImage}" />
+                    <TextBlock Text="{x:Static p:Resources.BtnExpAndPlay}" Style="{StaticResource ActionBarTitleStyle}" />
+                </StackPanel>
+            </Button>
+
+            <Button x:Name="NextFrameButton" Style="{StaticResource HelpButtonStyle}" Content="{StaticResource NextImage}" Click="PrevNextButton_Click"  />
+        </StackPanel>
+
+        <ListBox x:Name="FrameList" Grid.Row="1" Grid.Column="0" Grid.RowSpan="2" Margin="8"
+                 SelectionMode="Extended"  ScrollViewer.VerticalScrollBarVisibility="Auto"
+                 SelectionChanged="FrameList_SelectionChanged">
+            <ListBox.ItemContainerStyle>
+                <Style TargetType="ListBoxItem">
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch"></Setter>
+                </Style>
+            </ListBox.ItemContainerStyle>
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding ID}" FontSize="16" TextAlignment="Center" />
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+        <GroupBox Grid.Row="1" Grid.Column="1" FontSize="16" Header="{x:Static p:Resources.FrameTypeAndPath}" Grid.RowSpan="2">
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <StackPanel Orientation="Vertical" Margin="8">
+                    <StackPanel Orientation="Horizontal" Margin="0 0 0 16">
+                        <TextBlock Style="{StaticResource HeaderTextStyle}" Text="{x:Static p:Resources.Label}" TextAlignment="Left" VerticalAlignment="Center" />
+                        <TextBox x:Name="LabelTextBox" FontSize="16" Width="160" Margin="8 0 8 0" TextChanged="OnLabelTextChanged" />
+                        <Button x:Name="LabelHelp" Style="{StaticResource HelpButtonStyle}" Content="{StaticResource QuestionMarkImage}" Background="Transparent" Click="LabelHelp_Click"  />
+                    </StackPanel>
+
+                    <TextBlock Style="{StaticResource HeaderTextStyle}" Text="{x:Static p:Resources.FrameType}" TextAlignment="Left" />
+
+                    <RadioButton x:Name="CoverPageButton" GroupName="FrameType" Margin="8" Checked="CoverPageButton_Checked">
+                        <TextBlock FontSize="16" Text="{x:Static p:Resources.CoverPage}" />
+                    </RadioButton>
+
+                    <RadioButton x:Name="CharDialogButton" GroupName="FrameType" IsChecked="True" Margin="8" Checked="CharDialogButton_Checked">
+                        <TextBlock FontSize="16" Text="{x:Static p:Resources.CharDialog}" />
+                    </RadioButton>
+
+                    <RadioButton x:Name="FullScrTextButton" GroupName="FrameType" Margin="8" Checked="FullScrTextButton_Checked">
+                        <TextBlock FontSize="16" Text="{x:Static p:Resources.FullScrText}" />
+                    </RadioButton>
+
+                    <TextBlock Style="{StaticResource HeaderTextStyle}" Text="{x:Static p:Resources.PathOptions}" TextAlignment="Left" Margin="0 16 0 0" />
+
+                    <RadioButton x:Name="NextButton" GroupName="PathOptions" Margin="8" IsChecked="True" Checked="NextButton_Checked">
+                        <TextBlock FontSize="16" Text="{x:Static p:Resources.NextButton}" />
+                    </RadioButton>
+
+                    <StackPanel Orientation="Horizontal" Margin="0 2 0 2">
+                        <TextBlock FontSize="16" Text="{x:Static p:Resources.Goto}" />
+                        <Button x:Name="NextTargetButton" MinWidth="220" Background="White" Content="{x:Static p:Resources.NextFrame}"
+                                Margin="8 0 8 0" HorizontalAlignment="Stretch" Click="NextTargetButton_Click" />
+                    </StackPanel>
+
+                    <RadioButton x:Name="TextOptButton" GroupName="PathOptions" Margin="8 24 8 8" Checked="TextOptButton_Checked">
+                        <TextBlock FontSize="16" Text="{x:Static p:Resources.TextOptions}" />
+                    </RadioButton>
+
+                    <Grid Margin="0 2 0 2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="30" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <TextBlock Grid.Column="0" Grid.Row="0" FontSize="16">1.</TextBlock>
+                        <TextBox x:Name="Opt1TextBox" Grid.Column="1" Grid.Row="0" FontSize="14" MinWidth="250"
+                                 Margin="8 0 8 0" HorizontalAlignment="Stretch" TextChanged="OnOptTextChanged" />
+                    </Grid>
+
+                    <StackPanel Orientation="Horizontal" Margin="0 2 0 2">
+                        <TextBlock FontSize="16" Text="{x:Static p:Resources.Value}" />
+                        <TextBox x:Name="Opt1ValTextBox" FontSize="14" Text="1" Width="100" Margin="8 0 8 0" TextChanged="OnOptTextChanged" />
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" Margin="0 2 0 2">
+                        <TextBlock FontSize="16" Text="{x:Static p:Resources.Goto}" />
+                        <Button x:Name="Opt1TargetButton" MinWidth="220" Background="White" Content="{x:Static p:Resources.NextFrame}"
+                                Margin="8 0 8 0" HorizontalAlignment="Stretch" Click="Opt1TargetButton_Click" />
+                    </StackPanel>
+
+                    <Grid Margin="0 16 0 2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="30" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <TextBlock Grid.Column="0" Grid.Row="0" FontSize="16">2.</TextBlock>
+                        <TextBox x:Name="Opt2TextBox" Grid.Column="1" Grid.Row="0" FontSize="14" MinWidth="250"
+                                 Margin="8 0 8 0" HorizontalAlignment="Stretch" TextChanged="OnOptTextChanged" />
+                    </Grid>
+
+                    <StackPanel Orientation="Horizontal" Margin="0 2 0 2">
+                        <TextBlock FontSize="16" Text="{x:Static p:Resources.Value}" />
+                        <TextBox x:Name="Opt2ValTextBox" FontSize="14" Text="2" Width="100" Margin="8 0 8 0" TextChanged="OnOptTextChanged" />
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" Margin="0 2 0 8">
+                        <TextBlock FontSize="16" Text="{x:Static p:Resources.Goto}" />
+                        <Button x:Name="Opt2TargetButton" MinWidth="220" Background="White" Content="{x:Static p:Resources.NextFrame}"
+                                Margin="8 0 8 0" HorizontalAlignment="Stretch" Click="Opt2TargetButton_Click" />
+                    </StackPanel>
+
+                    <Grid Margin="0 16 0 2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="30" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <TextBlock Grid.Column="0" Grid.Row="0" FontSize="16">3.</TextBlock>
+                        <TextBox x:Name="Opt3TextBox" Grid.Column="1" Grid.Row="0" FontSize="14" MinWidth="250"
+                                 Margin="8 0 8 0" HorizontalAlignment="Stretch" TextChanged="OnOptTextChanged" />
+                    </Grid>
+
+                    <StackPanel Orientation="Horizontal" Margin="0 2 0 2">
+                        <TextBlock FontSize="16" Text="{x:Static p:Resources.Value}" />
+                        <TextBox x:Name="Opt3ValTextBox" FontSize="14" Text="3" Width="100" Margin="8 0 8 0" TextChanged="OnOptTextChanged" />
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" Margin="0 2 0 8">
+                        <TextBlock FontSize="16" Text="{x:Static p:Resources.Goto}" />
+                        <Button x:Name="Opt3TargetButton" MinWidth="220" Background="White" Content="{x:Static p:Resources.NextFrame}"
+                                Margin="8 0 8 0" HorizontalAlignment="Stretch" Click="Opt3TargetButton_Click" />
+                    </StackPanel>
+
+                    <Grid Margin="0 16 0 2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="30" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <TextBlock Grid.Column="0" Grid.Row="0" FontSize="16">4.</TextBlock>
+                        <TextBox x:Name="Opt4TextBox" Grid.Column="1" Grid.Row="0" FontSize="14" MinWidth="250"
+                                 Margin="8 0 8 0" HorizontalAlignment="Stretch" TextChanged="OnOptTextChanged" />
+                    </Grid>
+
+                    <StackPanel Orientation="Horizontal" Margin="0 2 0 2">
+                        <TextBlock FontSize="16" Text="{x:Static p:Resources.Value}" />
+                        <TextBox x:Name="Opt4ValTextBox" FontSize="14" Text="4" Width="100" Margin="8 0 8 0" TextChanged="OnOptTextChanged" />
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" Margin="0 2 0 8">
+                        <TextBlock FontSize="16" Text="{x:Static p:Resources.Goto}" />
+                        <Button x:Name="Opt4TargetButton" MinWidth="220" Background="White" Content="{x:Static p:Resources.NextFrame}"
+                                Margin="8 0 8 0" HorizontalAlignment="Stretch" Click="Opt4TargetButton_Click" />
+                    </StackPanel>
+
+                </StackPanel>
+            </ScrollViewer>
+        </GroupBox>
+
+        <GroupBox Grid.Row="1" Grid.Column="2" FontSize="16" Header="{x:Static p:Resources.FrameComp}" >
+            <Grid Margin=" 0 8 0 0">
+                <Grid.RowDefinitions >
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions >
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="3*" />
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Orientation="Horizontal" Margin="0 2 0 8" Grid.Row="0" Grid.Column="0">
+                    <TextBlock FontSize="16" Text="{x:Static p:Resources.Background}" />
+                    <Button x:Name="CoverButton" Width="150" Background="White" Content="{x:Static p:Resources.None}"
+                            Margin="8 0 8 0" Click="CoverButton_Click" />
+                    <CheckBox x:Name="DarkenCheckBox" Content="{x:Static p:Resources.Darken}" Margin="8 0 8 0" 
+                            Checked="DarkenBlurCheckBox_Checked" Unchecked="DarkenBlurCheckBox_Checked" />
+                    <CheckBox x:Name="BlurCheckBox" Content="{x:Static p:Resources.Blur}"
+                            Checked="DarkenBlurCheckBox_Checked" Unchecked="DarkenBlurCheckBox_Checked" />
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Margin="0 2 0 8" Grid.Row="1" Grid.Column="0">
+                    <TextBlock FontSize="16" Text="{x:Static p:Resources.SoundEffect}" />
+                    <Button x:Name="SoundButton" Width="150" Background="White" Content="{x:Static p:Resources.None}"
+                            Margin="8 0 8 0" Click="SoundButton_Click" />
+                </StackPanel>
+
+                <Grid Grid.Row="2" Grid.Column="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                         <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Grid.Row="0" Grid.Column="0" FontSize="16" Text="{x:Static p:Resources.Left1}" Margin="0 0 8 0"/>
+                    <Button x:Name="Left1Button" Grid.Row="0" Grid.Column="1" MinWidth="120" Background="White" Margin="0 0 8 0"
+                            Content="{x:Static p:Resources.None}" HorizontalAlignment="Stretch" Click="Left1Button_Click" />
+
+                    <TextBlock Grid.Row="1" Grid.Column="0" FontSize="16" Text="{x:Static p:Resources.Left2}" Margin="0 8 8 0" />
+                    <Button x:Name="Left2Button" Grid.Row="1" Grid.Column="1" MinWidth="120" Background="White" Margin="0 8 8 0"
+                            Content="{x:Static p:Resources.None}" HorizontalAlignment="Stretch" Click="Left2Button_Click" />
+
+                    <TextBlock Grid.Row="2" Grid.Column="0" FontSize="16" Text="{x:Static p:Resources.Center}" Margin="0 8 8 0" />
+                    <Button x:Name="CenterButton" Grid.Row="2" Grid.Column="1" MinWidth="120" Background="White" Margin="0 8 8 0"
+                            Content="{x:Static p:Resources.None}" HorizontalAlignment="Stretch" Click="CenterButton_Click" />
+
+                    <TextBlock Grid.Row="3" Grid.Column="0" FontSize="16" Text="{x:Static p:Resources.Right1}" Margin="0 8 8 0" />
+                    <Button x:Name="Right1Button" Grid.Row="3" Grid.Column="1" MinWidth="120" Background="White" Margin="0 8 8 0"
+                            Content="{x:Static p:Resources.None}" HorizontalAlignment="Stretch" Click="Right1Button_Click" />
+
+                    <TextBlock Grid.Row="4" Grid.Column="0" FontSize="16" Text="{x:Static p:Resources.Right2}" Margin="0 8 8 0" />
+                    <Button x:Name="Right2Button" Grid.Row="4" Grid.Column="1" MinWidth="120" Background="White" Margin="0 8 8 0"
+                            Content="{x:Static p:Resources.None}" HorizontalAlignment="Stretch" Click="Right2Button_Click" />
+
+                    <Button x:Name="TestFrameButton" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" Margin="16 8 16 0"
+                            Style="{StaticResource EditButtonStyle}" Click="TestFrameButton_Click">
+                        <StackPanel Orientation="Horizontal" Margin="8">
+                            <Image Width="36" Height="36" Source="{StaticResource PreviewImage}" />
+                            <TextBlock Text="{x:Static p:Resources.FrameTest}" Margin="8"
+                                   Style="{StaticResource HeaderTextStyle}" VerticalAlignment="Center" />
+                        </StackPanel>
+                     </Button>
+                </Grid>
+
+                <StackPanel Orientation="Horizontal" Margin="0 2 0 8" Grid.Row="0" Grid.Column="1">
+                    <TextBlock FontSize="16" Text="{x:Static p:Resources.Speaker}" />
+                    <TextBox x:Name="SpeakerTextBox" FontSize="16" Width="200" Margin="8 0 8 0" TextChanged="OnOptTextChanged" />
+                </StackPanel>
+
+                <TextBlock FontSize="16" Text="{x:Static p:Resources.TextContent}" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" />
+
+                <TextBox x:Name="DialogTextBox" FontSize="14" Grid.Row="2" Grid.Column="1" MinWidth="270" MinHeight="200"
+                         TextAlignment="Left" TextWrapping="Wrap" AcceptsReturn="True" Margin="0 0 8 8"
+                         VerticalAlignment="Stretch" HorizontalAlignment="Stretch" TextChanged="OnOptTextChanged" >
+                </TextBox>
+
+            </Grid>
+        </GroupBox>
+
+        <WebBrowser x:Name="FrameView" Grid.Row="2" Grid.Column="2" Margin="8" />
+    </Grid>
+</Page>

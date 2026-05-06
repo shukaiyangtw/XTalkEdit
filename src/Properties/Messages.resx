@@ -1,0 +1,168 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="helpFileAssets" xml:space="preserve">
+    <value>The file assets are the image and sound files used in the scenes, including the background and characters. The images of characters with transparency are called "sprites". Each sprites and sounds are placed in the same directory, assigned unique IDs, and exported to image and audio HTML elements in the result web pages.</value>
+  </data>
+  <data name="helpFrameLabel" xml:space="preserve">
+    <value>The label of frame consists of alphabets, numbers, and underline. It sets up a jumpping target for for path options. It is also the tag for remembering the option the the user selected. For a frame that simply goes to the next frame, it is optional. For a frame the contains path options or wanna be a option of other frames, it is required.</value>
+  </data>
+  <data name="helpSelectWorkDirectory" xml:space="preserve">
+    <value>Select a folder as the current working directory. Every sub-directory that contains a xtalk.proj file is listed as a script project. If the related CSS, Images, Scripts files are not found, it prepares for you.</value>
+  </data>
+  <data name="msgBlankHtml" xml:space="preserve">
+    <value>Preview unavailable!</value>
+  </data>
+  <data name="msgFramesCopied" xml:space="preserve">
+    <value>{0} frame(s)  copied.</value>
+  </data>
+  <data name="msgNewID" xml:space="preserve">
+    <value>Please enter a new unique ID that is recommended to consist of alphabets, numbers, and underline.</value>
+  </data>
+  <data name="msgNewIDforFile" xml:space="preserve">
+    <value>Please enter a unique ID for the newly added file. It is recommended to consist of alphabets, numbers, and underline.</value>
+  </data>
+  <data name="msgNewProjectName" xml:space="preserve">
+    <value>Please enter a new project name as the newly created sub-directory in the current working directory.</value>
+  </data>
+  <data name="msgNewSceneName" xml:space="preserve">
+    <value>Please enter a new scene script name. It will be the file title of newly created .xtalk file in the current project directory.</value>
+  </data>
+  <data name="msgNoMoreFrames" xml:space="preserve">
+    <value>No more frames found.</value>
+  </data>
+  <data name="msgNotImplemented" xml:space="preserve">
+    <value>Not implemented yet!</value>
+  </data>
+  <data name="msgPleaseInputOptText" xml:space="preserve">
+    <value>(Please input the option text)</value>
+  </data>
+  <data name="msgRenameScene" xml:space="preserve">
+    <value>Please enter a new scene name which should not be the same with another scene in the project.</value>
+  </data>
+  <data name="warnBlankNotAllowed" xml:space="preserve">
+    <value>The inputted value can not be blank!</value>
+  </data>
+  <data name="warnFileAlreadyExists" xml:space="preserve">
+    <value>The file already exists.</value>
+  </data>
+  <data name="warnRUSureToDelete" xml:space="preserve">
+    <value>Are you sure to delete this item?</value>
+  </data>
+</root>

@@ -1,0 +1,89 @@
+﻿<Application x:Class="XTalkEdit.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:XTalkEdit"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+
+        <Style x:Key="CustomWindow" TargetType="{x:Type NavigationWindow}">
+            <Setter Property="AllowsTransparency" Value="False" />
+            <Setter Property="Background" Value="WhiteSmoke" />
+            <Setter Property="Foreground" Value="#212121" />
+        </Style>
+
+        <Style x:Key="ActionBarPanelStyle" TargetType="StackPanel">
+            <Setter Property="Background" Value="#00BCD4" />
+            <Setter Property="MinHeight" Value="32" />
+        </Style>
+
+        <Style x:Key="ActionBarTitleStyle" TargetType="TextBlock">
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="Margin" Value="8" />
+        </Style>
+
+        <Style x:Key="ActionBarButtonStyle" TargetType="Button">
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Background" Value="#0097A7" />
+            <Setter Property="MinWidth" Value="32" />
+            <Setter Property="MinHeight" Value="32" />
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="Margin" Value="8" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border CornerRadius="10" Background="{TemplateBinding Background}" BorderThickness="1">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="HeaderTextStyle" TargetType="TextBlock">
+            <Setter Property="VerticalAlignment" Value="Bottom" />
+            <Setter Property="Foreground" Value="Black" />
+            <Setter Property="FontSize" Value="18" />
+            <Setter Property="FontWeight" Value="Bold" />
+        </Style>
+
+        <Style x:Key="HelpButtonStyle" TargetType="Button">
+            <Setter Property="Width" Value="32" />
+            <Setter Property="Height" Value="32" />
+            <Setter Property="Background" Value="#00BCD4" />
+            <Setter Property="BorderThickness" Value="0" />
+        </Style>
+
+        <Style x:Key="EditButtonStyle" TargetType="Button">
+            <Setter Property="MinWidth" Value="64" />
+            <Setter Property="MinHeight" Value="32" />
+            <Setter Property="Foreground" Value="Black" />
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="Margin" Value="8" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border CornerRadius="10" Background="{TemplateBinding Background}" BorderThickness="1">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Image x:Key="QuestionMarkImage" Source="Assets/help.png" />
+        <Image x:Key="PrevImage" Source="Assets/backward.png" />
+        <Image x:Key="NextImage" Source="Assets/forward.png" />
+
+        <BitmapImage x:Key="BackImage" UriSource="Assets/back.png" />
+        <BitmapImage x:Key="SaveImage" UriSource="Assets/diskette.png" />
+        <BitmapImage x:Key="SearchImage" UriSource="Assets/search.png" />
+        <BitmapImage x:Key="PreviewImage" UriSource="Assets/preview.png" />
+
+    </Application.Resources>
+</Application>
