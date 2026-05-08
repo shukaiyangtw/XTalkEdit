@@ -1,0 +1,398 @@
+﻿/** @file xtalkshow.css
+ *  @brief 畫布樣式表.
+
+ *  整個交談是遊戲由背景(scene)、前景畫布(xt_framebuffer)、講者(peaker)、文字對話框(xt_dialog)、全螢
+    幕對話框(xt_dialog_full)、封面(xt_episode)、以及下一步按鈕(xt_next)所構成，這個 CSS 檔案指定了以
+    上的 DOM 元件在各種螢幕解析度下的尺寸以及字體大小，這是一個畫面長寬比為 16:9 的 CSS 範本、以配合
+    大部分的行動裝置螢幕，您可以修改成任何想要的尺寸與螢幕比例。
+
+ *  @author Shu-Kai Yang (http://shukaiyang.myweb.hinet.net/)
+ *  @date 2019/1/4 */
+
+div.xt_container
+{
+    position: relative;
+    margin: 0 auto;
+    width: 960px;
+    height: 540px;
+    border: 1px solid black;
+    overflow: hidden;
+}
+
+img.xt_preloaded
+{
+    display: none;
+    border-style: none;
+}
+
+audio.xt_embedded
+{
+    display: none;
+}
+
+img.xt_slide
+{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    border-style: none;
+}
+
+/* --------------------------------------------------------------------------------------------- */
+
+#xt_framebuffer
+{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 960px;
+    height: 540px;
+
+ /* background-color: gray;
+    display: none; */
+}
+
+#xt_next
+{
+    position: absolute;
+    top: 440px;
+    left: 860px;
+}
+
+#xt_next:focus
+{   outline: none;  }
+
+#xt_next img
+{
+    width: 64px;
+    height: 63px;
+}
+
+#xt_speaker
+{
+    position: absolute;
+    top: 250px;
+    left: 12px;
+    width: 160px;
+    height: 40px;
+
+    font-family: \5FAE\8EDF\6B63\9ED1\9AD4,'Microsoft JhengHei', Verdana, Helvetica, Arial, 'Microsoft Sans-serif';
+    font-size: 18pt;
+    font-weight: bold;
+    color: white;
+
+    padding: 6px 16px;
+    background-image: url("Images/xtalkspeaker.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+#xt_dialog
+{
+    position: absolute;
+    top: 300px;
+    left: 0px;
+    width: 890px;
+    height: 260px;
+    padding: 30px 35px;
+
+    background-image: url("Images/xtalkframe-half.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+#xt_dialog_text
+{
+    display: block;
+    width: 890px;
+
+    font-family: \5FAE\8EDF\6B63\9ED1\9AD4,'Microsoft JhengHei', Verdana, Helvetica, Arial, 'Microsoft Sans-serif';
+    font-size: 14pt;
+    color: white;
+
+    text-align: justify;
+}
+
+a.xt_option
+{
+    display: block;
+    margin-left: 6px;
+    margin-top: 10px;
+    font-family: \5FAE\8EDF\6B63\9ED1\9AD4,'Microsoft JhengHei', Verdana, Helvetica, Arial, 'Microsoft Sans-serif';
+    font-size: 14pt;
+    font-weight: bold;
+    color: lightyellow;
+    text-decoration: none;
+}
+
+a.xt_option:focus
+{
+ /* outline: none;
+    background-color: brown;
+    text-decoration: underline; */
+}
+
+#xt_dialog_full
+{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 880px;
+    height: 480px;
+    padding: 30px 40px 30px 40px;
+
+    background-image: url("Images/xtalkframe-full.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+#xt_dialog_fulltext
+{
+    display: block;
+    width: 880px;
+
+    font-family: \5FAE\8EDF\6B63\9ED1\9AD4,'Microsoft JhengHei', Verdana, Helvetica, Arial, 'Microsoft Sans-serif';
+    font-size: 14pt;
+    color: white;
+
+    text-align: justify;
+}
+
+/* Responsive Styles for Portrait Pad ------------------------------------------------------ */
+
+@media only screen and (min-width:768px) and (max-width:1023px)
+{
+    div.xt_container
+    {
+        width: 768px;
+        height: 426px;
+    }
+
+    #xt_framebuffer
+    {
+        width: 768px;
+        height: 426px;
+    }
+
+    #xt_next
+    {
+        top: 362px;
+        left: 700px;
+    }
+
+    #xt_next img
+    {
+        width: 40px;
+        height: 39px;
+    }
+
+    #xt_speaker
+    {
+        top: 194px;
+        left: 12px;
+        width: 120px;
+        height: 36px;
+
+        font-size: 16pt;
+        padding: 4px 12px;
+    }
+
+    #xt_dialog
+    {
+        top: 234px;
+        left: 0px;
+        width: 718px;
+        height: 237px;
+        padding: 20px 25px;
+    }
+
+    #xt_dialog_text
+    {
+        width: 718px;
+        font-size: 12pt;
+    }
+
+    a.xt_option
+    {
+        margin-left: 4px;
+        margin-top: 8px;
+        font-size: 12pt;
+    }
+
+    #xt_dialog_full
+    {
+        top: 0px;
+        left: 0px;
+        width: 718px;
+        height: 398px;
+        padding: 25px 25px;
+    }
+
+    #xt_dialog_fulltext
+    {
+        width: 718px;
+        font-size: 12pt;
+    }
+}
+
+/* Responsive Styles for Landscape Phone --------------------------------------------------- */
+
+@media only screen and (min-width:512px) and (max-width:767px)
+{
+    div.xt_container
+    {
+        width: 512px;
+        height: 285px;
+    }
+
+    #xt_framebuffer
+    {
+        width: 512px;
+        height: 285px;
+    }
+
+    #xt_next
+    {
+        top: 240px;
+        left: 460px;
+    }
+
+    #xt_next img
+    {
+        width: 30px;
+        height: 29px;
+    }
+
+    #xt_speaker
+    {
+        top: 134px;
+        left: 12px;
+        width: 80px;
+        height: 20px;
+
+        font-size: 11pt;
+        padding: 2px 8px;
+    }
+
+    #xt_dialog
+    {
+        top: 159px;
+        left: 0px;
+        width: 482px;
+        height: 125px;
+        padding: 11px 14px;
+    }
+
+    #xt_dialog_text
+    {
+        width: 482px;
+        font-size: 10pt;
+    }
+
+    a.xt_option
+    {
+        margin-left: 3px;
+        margin-top: 3px;
+        font-size: 10pt;
+    }
+
+    #xt_dialog_full
+    {
+        top: 0px;
+        left: 0px;
+        width: 482px;
+        height: 260px;
+        padding: 14px 16px;
+    }
+
+    #xt_dialog_fulltext
+    {
+        width: 482px;
+        font-size: 10pt;
+    }
+}
+
+/* Responsive Styles for Portrait Phone ---------------------------------------------------- */
+
+@media only screen and (max-width:511px)
+{
+    div.xt_container
+    {
+        width: 360px;
+        height: 210px;
+    }
+
+    #xt_framebuffer
+    {
+        width: 360px;
+        height: 210px;
+    }
+
+    #xt_next
+    {
+        top: 176px;
+        left: 326px;
+    }
+
+    #xt_next img
+    {
+        width: 20px;
+        height: 20px;
+    }
+
+    #xt_speaker
+    {
+        top: 100px;
+        left: 8px;
+        width: 80px;
+        height: 14px;
+
+        font-size: 8pt;
+        padding: 2px 6px;
+    }
+
+    #xt_dialog
+    {
+        top: 120px;
+        left: 0px;
+        width: 336px;
+        height: 85px;
+        padding: 10px 12px;
+    }
+
+    #xt_dialog_text
+    {
+        width: 336px;
+        font-size: 7pt;
+    }
+
+    a.xt_option
+    {
+        margin-left: 2px;
+        margin-top: 2px;
+        font-size: 7pt;
+    }
+
+    #xt_dialog_full
+    {
+        top: 4px;
+        left: 0px;
+        width: 336px;
+        height: 186px;
+        padding: 12px 12px;
+    }
+
+    #xt_dialog_fulltext
+    {
+        width: 336px;
+        font-size: 7pt;
+    }
+}

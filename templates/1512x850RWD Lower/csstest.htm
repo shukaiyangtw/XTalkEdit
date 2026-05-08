@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Language" content="zh-tw" />
+    <link rel="stylesheet" href="xtalkshow.css" type="text/css" />
+    <title>XTalk Responsive CSS Test</title>
+
+    <script type="text/javascript">
+
+        function onSize()
+        {   document.title = document.body.clientWidth + " x " + document.body.clientHeight;  }
+    </script>
+</head>
+
+<body onresize="onSize();">
+
+    <div class="xt_container">
+        <img id="xt_scene" class="xt_slide" src="classroom.jpg" alt="場景" />
+        <canvas id="xt_framebuffer"></canvas>
+
+        <div id="xt_dialog_full" style="display:none">
+            <span id="xt_dialog_fulltext">「肯Ｘ基的炸雞肉都是來自基因改造的無頭雞，有照片為證」，聽到這個消息的你、首先會怎麼做？</span>
+
+            <a id="xt_option1A" href="#" class="xt_option">直接轉貼分享給親朋好友。</a>
+            <a id="xt_option2A" href="#" class="xt_option">存檔下來做成筆記。</a>
+            <a id="xt_option3A" href="#" class="xt_option">親身實驗，將兩種飲料混合起來喝看看。</a>
+            <a id="xt_option4A" href="#" class="xt_option">查詢網路中有無醫師或營養師發表的意見。</a>
+        </div>
+
+        <div id="xt_dialog">
+            <span id="xt_dialog_text">「肯Ｘ基的炸雞肉都是來自基因改造的無頭雞，有照片為證」，聽到這個消息的你、首先會怎麼做？</span>
+            <a id="xt_option1B" href="#" class="xt_option">趕快轉貼分享給親朋好友，叫他們不要再吃肯Ｘ基的雞肉。</a>
+            <a id="xt_option4B" href="#" class="xt_option">問一問功課好的同學，他們的看法是如何？</a>
+            <a id="xt_option2B" href="#" class="xt_option">把標題或照片丟到搜尋引擎，找一找有多少相關的報導。
+        </div>
+
+        <div id="xt_speaker">婉君</div>
+
+        <a id="xt_episode_link" href="#" style="display: none"><img id="xt_episode" class="xt_slide" alt="" /></a>
+        <a id="xt_next" href="#"><img border="0" src="Images/xtalknext.png" alt="下一頁" /></a>
+    </div>
+
+</body>
+</html>

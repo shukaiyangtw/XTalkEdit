@@ -1,0 +1,167 @@
+﻿/** @file xtalkshow.css
+ *  @brief 畫布樣式表.
+
+ *  整個交談是遊戲由背景(scene)、前景畫布(xt_framebuffer)、講者(peaker)、文字對話框(xt_dialog)、全螢
+    幕對話框(xt_dialog_full)、封面(xt_episode)、以及下一步按鈕(xt_next)所構成，這個 CSS 檔案指定了以
+    上的 DOM 元件在各種螢幕解析度下的尺寸以及字體大小，這是一個畫面長寬比為 4:3 的 CSS 範本、以配合大
+    部分的行動裝置螢幕，您可以修改成任何想要的尺寸與螢幕比例。
+
+ *  @author Shu-Kai Yang (http://shukaiyang.myweb.hinet.net/)
+ *  @date 2018/11/14 */
+
+div.xt_container
+{
+    position: relative;
+    margin: 0 auto;
+    width: 720px;
+    height: 540px;
+    border: 1px solid black;
+    overflow: hidden;
+}
+
+img.xt_preloaded
+{
+    display: none;
+    border-style: none;
+}
+
+audio.xt_embedded
+{
+    display: none;
+}
+
+img.xt_slide
+{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    border-style: none;
+}
+
+/* --------------------------------------------------------------------------------------------- */
+
+#xt_framebuffer
+{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 720px;
+    height: 540px;
+
+ /* background-color: gray;
+    display: none; */
+}
+
+#xt_next
+{
+    position: absolute;
+    top: 480px;
+    left: 630px;
+}
+
+#xt_next:focus
+{   outline: none;  }
+
+#xt_next img
+{
+    width: 58px;
+    height: 43px;
+}
+
+#xt_speaker
+{
+    position: absolute;
+    top: 310px;
+    left: 12px;
+    width: 207px;
+    height: 46px;
+
+    font-family: \5FAE\8EDF\6B63\9ED1\9AD4,'Microsoft JhengHei', Verdana, Helvetica, Arial, 'Microsoft Sans-serif';
+    font-size: 24pt;
+    font-weight: bold;
+    color: white;
+
+    padding: 6px 16px;
+    background-image: url("Images/xtalkspeaker.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+#xt_dialog
+{
+    position: absolute;
+    top: 370px;
+    left: 12px;
+    width: 666px;
+    height: 135px;
+    padding: 15px 15px;
+
+    background-image: url("Images/xtalkframe-half.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+#xt_dialog_text
+{
+    display: block;
+    width: 666px;
+
+    font-family: \5FAE\8EDF\6B63\9ED1\9AD4,'Microsoft JhengHei', Verdana, Helvetica, Arial, 'Microsoft Sans-serif';
+    font-size: 14pt;
+    color: white;
+
+    text-align: justify;
+}
+
+a.xt_option
+{
+    display: block;
+    margin-left: 6px;
+    margin-top: 10px;
+    font-family: \5FAE\8EDF\6B63\9ED1\9AD4,'Microsoft JhengHei', Verdana, Helvetica, Arial, 'Microsoft Sans-serif';
+    font-size: 14pt;
+    font-weight: bold;
+    color: lightyellow;
+    text-decoration: none;
+}
+
+a.xt_option:focus
+{
+ /* outline: none;
+    background-color: brown;
+    text-decoration: underline; */
+}
+
+#xt_dialog_full
+{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 640px;
+    height: 460px;
+    padding: 40px 40px;
+
+    background-image: url("Images/xtalkframe-full.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+#xt_dialog_fulltext
+{
+    display: block;
+    width: 640px;
+
+    font-family: \5FAE\8EDF\6B63\9ED1\9AD4,'Microsoft JhengHei', Verdana, Helvetica, Arial, 'Microsoft Sans-serif';
+    font-size: 14pt;
+    color: white;
+
+    text-align: justify;
+}
